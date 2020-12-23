@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const express = require('express');
 const { Client } = require('pg');
@@ -28,19 +29,19 @@ async function connect() {
   }
 }
 
-async function assertDatabaseConnectionOk() {
-  try {
-    await sequelize.authenticate();
-    console.warn('Database connection OK!');
-  } catch (error) {
-    console.warn('Unable to connect to the database:');
-    console.warn(error.message);
-    process.exit(1);
-  }
-}
+// async function assertDatabaseConnectionOk() {
+//   try {
+//     await sequelize.authenticate();
+//     console.warn('Database connection OK!');
+//   } catch (error) {
+//     console.warn('Unable to connect to the database:');
+//     console.warn(error.message);
+//     process.exit(1);
+//   }
+// }
 
 async function init() {
-  await assertDatabaseConnectionOk();
+  // await assertDatabaseConnectionOk();
   await connect();
 
   console.warn(`Starting Sequelize + Express on port ${PORT}...`);

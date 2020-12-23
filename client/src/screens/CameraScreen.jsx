@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Card } from 'react-native-elements';
 
 const CameraScreen = () => (
   <View>
-    <Text>Camera</Text>
+    <Card>
+      <Card.Title>Object Detector</Card.Title>
+    </Card>
+    <Card>
+      <Card.Title>Document Detector</Card.Title>
+    </Card>
   </View>
 );
 
