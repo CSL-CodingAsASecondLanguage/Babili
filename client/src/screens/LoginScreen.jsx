@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 import 'react-native-gesture-handler';
@@ -59,7 +60,6 @@ export default function LoginScreen({ navigation: { navigate } }) {
         <Text style={styles.title}>babili</Text>
         <Image
           style={styles.logo}
-        // eslint-disable-next-line global-require
           source={require('../../assets/logo.png')}
         />
         <Button onPress={() => signInWithGoogle()} title="Sign in with Google" />
