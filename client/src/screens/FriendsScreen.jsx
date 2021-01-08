@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, StyleSheet, StatusBar, Alert,
 } from 'react-native';
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
 });
 const FriendsScreen = ({ navigation, isFocused }) => {
   // eslint-disable-next-line no-unused-vars
-  const [searchResults, setSearchResults] = React.useState(null);
-  const [currentFriend, setCurrentFriend] = React.useState(null);
-  const [userInfo, setUserInfo] = React.useState(null);
+  const [searchResults, setSearchResults] = useState(null);
+  const [currentFriend, setCurrentFriend] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
   const onFriendPressHandler = (friend) => {
     setCurrentFriend(friend);
@@ -94,7 +94,7 @@ const FriendsScreen = ({ navigation, isFocused }) => {
     }).catch((e) => console.warn(e.message));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getCurrentUserInfo();
   }, [isFocused]);
 

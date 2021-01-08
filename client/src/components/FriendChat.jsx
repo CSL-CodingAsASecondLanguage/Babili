@@ -4,7 +4,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   StyleSheet,
   TouchableWithoutFeedback,
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
   },
 });
 const FriendChat = ({ currentFriend, sender }) => {
-  const [messages, setMessages] = React.useState([]);
-  const [fonts, setFonts] = React.useState(15);
+  const [messages, setMessages] = useState([]);
+  const [fonts, setFonts] = useState(15);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const pusher = new Pusher(pusherConfig.key, pusherConfig);
     const chatChannel = pusher.subscribe('chat_channel');
     chatChannel.bind('pusher:subscription_succeeded', () => {
@@ -99,7 +99,7 @@ const FriendChat = ({ currentFriend, sender }) => {
     />
   );
 
-  const onSend = React.useCallback((messages = []) => {
+  const onSend = useCallback((messages = []) => {
     const receiver = { _id: currentFriend.email, name: currentFriend.username || '', avatar: currentFriend.image };
     const message = messages[0];
     axios.post(`${pusherConfig.serverEndpoint}/users/messages`, { message, receiver });

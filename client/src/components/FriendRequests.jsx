@@ -55,6 +55,7 @@ const FriendRequests = ({ userInfo }) => {
   };
   const acceptFriendRequest = (data) => {
     // reset prev results
+
     const removeFromFriendRequest = userInfo.friendrequests.filter(({
       email }) => email === data.email);
     const removeFromFriendRequestIndex = userInfo.friendrequests.findIndex(({

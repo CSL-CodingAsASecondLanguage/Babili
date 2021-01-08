@@ -17,15 +17,6 @@ const styles = StyleSheet.create({
     margin: 5,
     paddingHorizontal: 10,
   },
-  searchListContainer: {
-    height: 200,
-    elevation: 1,
-    // backgroundColor: '#147EFB',
-    // borderRadius: 5,
-    borderColor: 'white',
-    // paddingHorizontal: 10,
-    // marginHorizontal: 30,
-  },
   searchList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -45,18 +36,17 @@ const styles = StyleSheet.create({
 
 function FriendSearchBar({ searchFriend, searchResults, sendFriendRequest }) {
   return (
-    <View style={{ flex: 1, display: 'flex' }}>
+    <View>
       <TextInput
         style={styles.searchBar}
         placeholder=" search for people"
         onChangeText={(text) => searchFriend(text)}
-      >
-        {/* <AntDesign name="search1" size={20} color="#147EFB" /> */}
-      </TextInput>
+      />
+
       {
         searchResults
       && (
-      <View style={styles.searchListContainer}>
+      <View>
         {searchResults.map(({ username, email, image }) => (
           <View style={styles.searchList} key={email}>
             <Text style={styles.searchText}>{username}</Text>
