@@ -66,7 +66,7 @@ router.patch('/user/:email', async (req, res) => {
     friendrequests,
     friends,
   } = req.body;
-
+  console.warn(req.body);
   // update query
   const updateQuery = 'UPDATE users SET country = $1, language = $2, aboutme = $3, friendrequests = $4, friends = $5  WHERE email = $6';
   // find user
