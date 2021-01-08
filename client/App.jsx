@@ -75,7 +75,7 @@ const navigator = createStackNavigator({
   Profile: ProfileScreen,
   Home: AppStack,
 }, {
-  initialRouteName: 'Loading',
+  initialRouteName: 'Login',
   defaultNavigationOptions: {
     title: 'babili',
   },
