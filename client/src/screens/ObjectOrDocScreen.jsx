@@ -30,6 +30,10 @@ const ObjectOrDocScreen = ({ navigation: { navigate } }) => (
     <TouchableOpacity style={styles.topButton} onPress={() => navigate('Object')}>
       <Text style={styles.text}>Object Detection</Text>
     </TouchableOpacity>
+    <TouchableOpacity style={styles.bottomButton} onPress={() => navigate('ASL')}>
+      <Text style={styles.text}>ASL for ESL</Text>
+    </TouchableOpacity>
+
   </View>
 );
 
