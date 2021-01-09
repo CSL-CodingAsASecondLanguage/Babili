@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 });
 const Header = () => (
   <View style={styles.header}>
-    <Text style={styles.header_text}>MemoryGame</Text>
+    <Text style={styles.header_text}>Memory Game</Text>
   </View>
 );
 

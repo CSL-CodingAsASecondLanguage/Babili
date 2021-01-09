@@ -50,34 +50,46 @@ const FriendRequests = ({ userInfo }) => {
   const updateFriend = (email, data) => {
     axios.patch(
       `${config.BASE_URL}/user/${email}`, data,
-    ).then((res) => console.warn(res))
+      // (res) => console.warn(res)
+    ).then()
       .catch((e) => alert(e.message));
   };
   const acceptFriendRequest = (data) => {
-    // reset prev results
-
+    // remove friend request from sender's friend req array
     const removeFromFriendRequest = userInfo.friendrequests.filter(({
       email }) => email === data.email);
-    const removeFromFriendRequestIndex = userInfo.friendrequests.findIndex(({
+    // find friend req of specific friend to remove
+    const removedFriendIndex = userInfo.friendrequests.findIndex(({
       email }) => email === data.email);
-
-    userInfo.friendrequests.splice(removeFromFriendRequestIndex, 1);
-    const addFriend = [...removeFromFriendRequest, ...userInfo.friends || []];
+    // remove that friend from sender's friend request array
+    userInfo.friendrequests.splice(removedFriendIndex, 1);
+    // update sender's friends array
+    const newFriendsArr = [...removeFromFriendRequest, ...userInfo.friends || []];
+    console.log('newFriendsArr:', newFriendsArr);
     // send friend request to the server to handle
     updateFriend(userInfo.email, {
       friendrequests: [...userInfo.friendrequests],
-      friends: addFriend,
+      friends: newFriendsArr,
     });
+    console.log(removeFromFriendRequest[0], 'REMOVEFROMFRIENDREQ');
     // update the friend that sends request
     axios.get(
-      `${config.BASE_URL}/user/${data.email}`,
+      `${config.BASE_URL}/user/${removeFromFriendRequest[0].email}`,
     ).then((res) => {
       const userSendingRequest = res.data;
+      let updateFriendList;
+      console.log('userSendingRequest', userSendingRequest);
       const currentUserInfo = { name: userInfo.name, email: userInfo.email, image: userInfo.image };
+      console.log('CURRENTUSERINFO:', currentUserInfo);
       // update the friend lists of the user that sent request
-      const updateFriendList = [currentUserInfo, ...userSendingRequest.friends];
+      if (!userSendingRequest.friends) {
+        updateFriendList = [currentUserInfo];
+      } else {
+        updateFriendList = [currentUserInfo, ...userSendingRequest.friends];
+      }
+      console.log('updateFriendList:', updateFriendList);
       axios.patch(
-        `${config.BASE_URL}/user/${data.email}`, { friends: updateFriendList },
+        `${config.BASE_URL}/user/${removeFromFriendRequest[0].email}`, { friends: updateFriendList },
       ).then(() => alert('friend req accepted'));
     });
   };
