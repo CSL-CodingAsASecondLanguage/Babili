@@ -59,13 +59,14 @@ export default function LoginScreen({ navigation: { navigate } }) {
         navigate('Home', { email: user.user.email });
       }
     } else if (type === 'facebook') {
-      console.warn('USER', user);
-      await axios.post('http://192.168.1.138:3000/login', {
+      alert('Sign in with facebook is down at this time. Please try again with Google. Sorry for the inconvenience');
+      await axios.post(`${config.BASE_URL}/login`, {
         email: user.email || null,
         name: user.name || null,
         photoUrl: null,
         loginType: type,
       });
+      navigate('Home', { email: user.user.email });
     }
   };
 
@@ -95,7 +96,7 @@ export default function LoginScreen({ navigation: { navigate } }) {
     try {
       const { token, type, userId } = await Facebook.logInWithReadPermissionsAsync({ permissions: ['public_profile'] });
       if (type === 'success') {
-        const user = await fetch(`https://graph.facebook.com/${userId}?access_token=${token}`);
+        const user = await fetch(`https://graph.facebook.com/${userId}?fields=id,name,email&access_token=${token}`);
         await onSignIn(await user.json(), 'facebook');
       }
     } catch (err) {
