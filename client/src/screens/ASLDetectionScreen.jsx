@@ -182,7 +182,7 @@ export default function ASLDetectionScreen() {
           <View style={{ display: 'flex', justifyContent: 'center' }}>
             <Text style={{ fontSize: 25, color: '#2E86ab' }}>This hand gesture means...</Text>
             <Text style={{
-              fontSize: 50, justifyContent: 'center', marginTop: 20, color: '#0f9535',
+              fontSize: 50, justifyContent: 'center', marginTop: 20, color: '#0f9535', textAlign: 'center',
             }}
             >
               { emojis[emoji] }
