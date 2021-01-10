@@ -91,7 +91,7 @@ export default function ASLDetectionScreen() {
   const [emoji, setEmoji] = useState(null);
   const [predictionFound, setPredictionFound] = useState(false);
 
-  const emojis = { thumbs_up: '👍🏾 Approval!', victory: '✌🏾 Victory!' };
+  const emojis = { thumbs_up: '👍🏾 Approval!', victory: '👋🏾 Hello!' };
 
   const TensorCamera = cameraWithTensors(Camera);
   let requestAnimationFrameId = 0;
@@ -190,7 +190,7 @@ export default function ASLDetectionScreen() {
             <TouchableOpacity
               onPress={loadNewTranslation}
               style={{
-                margin: 30, backgroundColor: 'red', borderRadius: 20, justifyContent: 'center',
+                margin: 30, backgroundColor: '#f42B03', borderRadius: 20, justifyContent: 'center',
               }}
             >
               <Text style={{

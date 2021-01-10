@@ -1,4 +1,7 @@
-/* eslint-disable camelcase */
+/* eslint-disable global-require */
+/* eslint-disable semi */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   StyleSheet, View, TouchableHighlight, Image,
@@ -6,7 +9,6 @@ import {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     alignItems: 'center',
   },
   card_text: {
@@ -15,27 +17,25 @@ const styles = StyleSheet.create({
   },
 });
 
-const MemoryGameCard = ({
-  // eslint-disable-next-line react/prop-types
-  src, name, clickCard, is_open,
-}) => {
-  let cardSrc = 'https://scontent-dfw5-1.xx.fbcdn.net/v/t31.0-8/p960x960/30848584_493792521023939_8435646401627466011_o.png?_nc_cat=109&ccb=2&_nc_sid=85a577&_nc_ohc=xtJDLwjcB0cAX8mXhmS&_nc_oc=AQnt9csMPj2bfXFsIeP93AGAr5htp-FsZ3KuhIJ5p1o62411qGsClDioXN2Y_3qu5NuyuYv-MzLp9qxcbMzjiK4T&_nc_ht=scontent-dfw5-1.xx&_nc_tp=30&oh=31f26c47c253e1fa5237173182b55450&oe=60056885';
-  if (is_open) {
-    cardSrc = src;
+const MemoryGameCard = (props) => {
+  let source = require('../../assets/logo.png')
+
+  if (props.is_open) {
+    source = props.src;
   }
+
   return (
     <View style={styles.card}>
       <TouchableHighlight
-        onPress={clickCard}
+        onPress={props.clickCard}
         activeOpacity={0.75}
         underlayColor="#f1f1f1"
       >
         <Image
-          name={name}
-          source={{ uri: cardSrc }}
           style={{
-            width: 200, height: 200, marginRight: 5, borderRadius: 10,
+            width: 100, height: 125, justifyContent: 'center', resizeMode: 'contain',
           }}
+          source={source}
         />
       </TouchableHighlight>
     </View>

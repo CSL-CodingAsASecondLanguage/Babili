@@ -9,7 +9,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import firebase from 'firebase';
 import config from '../config';
 import LoginScreen from './src/screens/LoginScreen';
-import MatchingGameScreen from './src/screens/MatchingGameScreen';
+import MemoryGameScreen from './src/screens/MemoryGameScreen';
 import ObjectOrDocScreen from './src/screens/ObjectOrDocScreen';
 import LoadingScreen from './src/screens/LoadingScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
@@ -69,7 +69,7 @@ const navigator = createStackNavigator({
   Messages: MessagesScreen,
   Login: LoginScreen,
   FlashCard: FlashCardScreen,
-  Matching: MatchingGameScreen,
+  Matching: MemoryGameScreen,
   Document: DocumentScreen,
   Object: ObjectDetectionScreen,
   Quiz: QuizScreen,

@@ -1,23 +1,23 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   score_container: {
-    flex: 1,
     alignItems: 'center',
     padding: 10,
   },
   score: {
     fontSize: 40,
     fontWeight: 'bold',
+    color: '#f42b03',
   },
 });
 
-// eslint-disable-next-line react/prop-types
-const Score = ({ score }) => (
+const MemoryGameScore = ({ score }) => (
   <View style={styles.score_container}>
-    <Text style={styles.score}>{ score }</Text>
+    <Text style={styles.score}>{`Score: ${score}`}</Text>
   </View>
 );
 
-export default Score;
+export default MemoryGameScore;
