@@ -257,9 +257,11 @@ export default function MessagesScreen() {
       textStyle={{
         right: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
         left: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
       }}
     />

@@ -91,9 +91,11 @@ const FriendChat = ({ currentFriend, sender }) => {
       textStyle={{
         right: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
         left: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
       }}
     />
