@@ -84,7 +84,7 @@ const ProfileScreen = ({ navigation, isFocused }) => {
   const logOut = async () => {
     try {
       await firebase.auth().signOut();
-      navigation.navigate('Login');
+      await navigation.navigate('Login');
     } catch (err) {
       console.warn('err in logout', err);
     }
