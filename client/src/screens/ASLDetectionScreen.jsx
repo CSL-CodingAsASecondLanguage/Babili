@@ -136,8 +136,6 @@ export default function ASLDetectionScreen() {
     const gesture = await GE.estimate(prediction[0].landmarks, 4);
     console.warn(prediction);
     if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-      // console.log(gesture.gestures);
-
       const confidence = gesture.gestures.map((hand) => hand.confidence);
       const maxConfidence = confidence.indexOf(Math.max.apply(null, confidence));
       console.warn(gesture.gestures[maxConfidence].name);

@@ -33,7 +33,6 @@ router.post('/login', async (req, res) => {
   const {
     email, name, photoUrl, loginType,
   } = req.body;
-  console.log(req.body, 'REQ.BODY');
   const insertOne = 'INSERT into users (email, username, image, login_type) VALUES ($1, $2, $3, $4)';
   await db.query(insertOne, [email, name, photoUrl, loginType]);
   res.status(201).send({ error: false, message: 'user added successfully!' });
