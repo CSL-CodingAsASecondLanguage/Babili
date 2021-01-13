@@ -1,10 +1,10 @@
 ## Description
 
-Babili is an app aimed at ESL adults and children who wish to improve their conversational English skills in a fun way.
+Babili is an app aimed at English as a Second Language (ESL) adults and children who wish to improve their conversational English skills in a fun way.
 
 Upon signing in, the user is taken to a chat page where they can practice conversing in English with Devi, a friendly AI bot created using Google's Dialogflow. Through Devi users may add English words to their word bank.
 
-Users may also add words to their word bank via the flashcard game. All games are accessible from the games icon. Along with flashcards, the user can play a picture/word matching game which utilizes the words they have added into their word bank. Available on the same page is an ASL translation feature that uses machine learning to detect ASL and relay back to the user in spanish and english what is being signed. 
+Users may also add words to their word bank via the flashcard game. All games are accessible from the games icon. Along with flashcards, the user can play a picture/word matching game which utilizes the words they have added into their word bank. Available on the same page is an American Sign Language (ASL) translation feature that uses machine learning to detect ASL and relay back to the user in spanish and english what is being signed. 
 
 Babili also contains an object detection feature. This tool utilizes machine learning and the phone's camera to determine what an object is. After detection, the English and Spanish word are relayed back to the user.
 
