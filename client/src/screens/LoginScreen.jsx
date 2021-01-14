@@ -35,37 +35,41 @@ const styles = StyleSheet.create({
 });
 export default function LoginScreen({ navigation: { navigate } }) {
   const onSignIn = async (user, type) => {
-    if (type === 'google') {
-      if (user.additionalUserInfo.isNewUser === true) { // user is new
-        await firebase.database().ref(`/users/${user.user.uid}`)
-          .set({
-            gmail: user.user.email,
-            profile_picture: user.additionalUserInfo.profile.picture,
-            first_name: user.additionalUserInfo.profile.given_name,
-            last_name: user.additionalUserInfo.profile.family_name,
-            created_at: Date.now(),
+    try {
+      if (type === 'google') {
+        if (user.additionalUserInfo.isNewUser === true) { // user is new
+          await firebase.database().ref(`/users/${user.user.uid}`)
+            .set({
+              gmail: user.user.email,
+              profile_picture: user.additionalUserInfo.profile.picture,
+              first_name: user.additionalUserInfo.profile.given_name,
+              last_name: user.additionalUserInfo.profile.family_name,
+              created_at: Date.now(),
+            });
+          await axios.post(`${config.BASE_URL}/login`, {
+            email: user.user.email,
+            name: `${user.additionalUserInfo.profile.given_name} ${user.additionalUserInfo.profile.family_name}`,
+            photoUrl: user.additionalUserInfo.profile.picture,
+            loginType: type,
           });
+          navigate('Home', { email: user.user.email });
+        } else { // user is not new
+          firebase.database().ref(`/users/${user.user.uid}`).update({
+            last_logged_in: Date.now(),
+          });
+          navigate('Home', { email: user.user.email });
+        }
+      } else if (type === 'facebook') {
         await axios.post(`${config.BASE_URL}/login`, {
-          email: user.user.email,
-          name: `${user.additionalUserInfo.profile.given_name} ${user.additionalUserInfo.profile.family_name}`,
-          photoUrl: user.additionalUserInfo.profile.picture,
+          email: user.email || null,
+          name: user.name || null,
+          photoUrl: null,
           loginType: type,
         });
         navigate('Home', { email: user.user.email });
-      } else { // user is not new
-        firebase.database().ref(`/users/${user.user.uid}`).update({
-          last_logged_in: Date.now(),
-        });
-        navigate('Home', { email: user.user.email });
       }
-    } else if (type === 'facebook') {
-      console.warn('USER', user);
-      await axios.post('http://192.168.1.138:3000/login', {
-        email: user.email || null,
-        name: user.name || null,
-        photoUrl: null,
-        loginType: type,
-      });
+    } catch (err) {
+      console.warn(err);
     }
   };
 
@@ -95,7 +99,7 @@ export default function LoginScreen({ navigation: { navigate } }) {
     try {
       const { token, type, userId } = await Facebook.logInWithReadPermissionsAsync({ permissions: ['public_profile'] });
       if (type === 'success') {
-        const user = await fetch(`https://graph.facebook.com/${userId}?access_token=${token}`);
+        const user = await fetch(`https://graph.facebook.com/${userId}?fields=id,name,email&access_token=${token}`);
         await onSignIn(await user.json(), 'facebook');
       }
     } catch (err) {

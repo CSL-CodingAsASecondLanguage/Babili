@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
 const ProfileScreen = ({ navigation, isFocused }) => {
   const [userInfo, setUserInfo] = useState(null);
-  const user = firebase.auth().currentUser;
+  let user = firebase.auth().currentUser;
 
   const fetchUser = () => {
     axios.get(`${config.BASE_URL}/user/${user.email}`)
@@ -84,7 +84,8 @@ const ProfileScreen = ({ navigation, isFocused }) => {
   const logOut = async () => {
     try {
       await firebase.auth().signOut();
-      navigation.navigate('Login');
+      user = 'no current user';
+      await navigation.navigate('Login');
     } catch (err) {
       console.warn('err in logout', err);
     }

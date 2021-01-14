@@ -24,15 +24,15 @@ const firebaseConfig = {
   measurementId: 'G-8KFB07WSNL',
 };
 export default {
-  GOOGLE_IOS,
   DIALOG_FLOW_CLIENT_EMAIL,
   DIALOG_FLOW_PROJECT_ID,
-  OCR,
   DIALOG_FLOW_PRIVATE_KEY,
-  GOOGLE_AND,
-  BASE_URL,
-  firebaseConfig,
+  OCR,
   GOOGLE_APPLICATION_CREDENTIALS,
   FB_SECRET,
   FB_ID,
+  BASE_URL,
+  firebaseConfig,
+  GOOGLE_AND,
+  GOOGLE_IOS,
 };

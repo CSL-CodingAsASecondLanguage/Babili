@@ -7,7 +7,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
   StyleSheet,
-  ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
   View,
@@ -92,9 +91,11 @@ const FriendChat = ({ currentFriend, sender }) => {
       textStyle={{
         right: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
         left: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
       }}
     />

@@ -148,7 +148,7 @@ export default function MessagesScreen() {
   }, [fonts]);
 
   const changeFontSize = () => {
-    (fonts === 15 ? setFonts(28) : setFonts(15));
+    (fonts === 15 ? setFonts(25) : setFonts(15));
   };
 
   useEffect(() => {
@@ -256,9 +256,11 @@ export default function MessagesScreen() {
       textStyle={{
         right: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
         left: {
           fontSize: fonts,
+          lineHeight: fonts,
         },
       }}
     />
