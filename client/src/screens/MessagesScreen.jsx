@@ -251,7 +251,6 @@ export default function MessagesScreen() {
       wrapperStyle={{
         right: {
           backgroundColor: '#0f9535',
-          alignSelf: 'stretch',
         },
       }}
       textStyle={{
