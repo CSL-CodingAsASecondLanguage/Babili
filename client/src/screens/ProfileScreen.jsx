@@ -84,6 +84,7 @@ const ProfileScreen = ({ navigation, isFocused }) => {
   const logOut = async () => {
     try {
       await firebase.auth().signOut();
+      // reassign user to string to avoid user === null
       user = 'no current user';
       await navigation.navigate('Login');
     } catch (err) {
