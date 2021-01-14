@@ -68,8 +68,8 @@ export default function LoginScreen({ navigation: { navigate } }) {
         });
         navigate('Home', { email: user.user.email });
       }
-    } catch (e) {
-      console.warn(e);
+    } catch (err) {
+      console.warn(err);
     }
   };
 
