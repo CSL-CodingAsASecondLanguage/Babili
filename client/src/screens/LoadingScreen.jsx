@@ -28,7 +28,7 @@ export default function LoadingScreen({ navigation: { navigate } }) {
 
   useEffect(() => {
     checkIfLoggedIn();
-  });
+  }, []);
 
   return (
     <View style={styles.container}>

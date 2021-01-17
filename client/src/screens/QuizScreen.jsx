@@ -186,3 +186,5 @@ const QuizScreen = ({ navigation: { navigate } }) => {
 };
 
 export default QuizScreen;
+
+
