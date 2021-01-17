@@ -28,6 +28,12 @@ const FriendChat = ({ currentFriend, sender }) => {
   const [messages, setMessages] = useState([]);
   const [fonts, setFonts] = useState(15);
 
+  const func = async () => {
+    const { data } = await axios.get(
+      `${pusherConfig.serverEndpoint}/users/messages/?sender=${sender.email}&receiver=${currentFriend.email}`,
+    );
+    setMessages(data);
+  };
   useEffect(() => {
     const pusher = new Pusher(pusherConfig.key, pusherConfig);
     const chatChannel = pusher.subscribe('chat_channel');
@@ -46,16 +52,11 @@ const FriendChat = ({ currentFriend, sender }) => {
     });
     axios.put(`${pusherConfig.serverEndpoint}/users/${sender.email}`, { name: sender.username });
     // get previous messages
-    (async () => {
-      const { data } = await axios.get(`${pusherConfig.serverEndpoint}/users/messages/?sender=${sender.email}&receiver=${currentFriend.email}`);
-      setMessages(data);
-    })();
-  }, [currentFriend, messages, fonts]);
-
-  const changeFontSize = () => {
-    (fonts === 15 ? setFonts(28) : setFonts(15));
-  };
-
+    func();
+  }, [currentFriend]);
+  // const changeFontSize = () => {
+  //   fonts === 15 ? setFonts(28) : setFonts(15);
+  // };
   const renderActions = (props) => (
     <Actions
       {...props}
@@ -76,10 +77,11 @@ const FriendChat = ({ currentFriend, sender }) => {
           }}
         />
       )}
-      onPressActionButton={() => { changeFontSize(); }}
+      // onPressActionButton={() => {
+      //   changeFontSize();
+      // }}
     />
   );
-
   const renderBubble = (props) => (
     <Bubble
       {...props}
@@ -100,15 +102,21 @@ const FriendChat = ({ currentFriend, sender }) => {
       }}
     />
   );
-
   const onSend = useCallback((messages = []) => {
-    const receiver = { _id: currentFriend.email, name: currentFriend.username || '', avatar: currentFriend.image };
+    const receiver = {
+      _id: currentFriend.email,
+      name: currentFriend.username || '',
+      avatar: currentFriend.image,
+    };
     const message = messages[0];
     axios.post(`${pusherConfig.serverEndpoint}/users/messages`, { message, receiver });
   }, []);
-
   return (
-    <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
       <View style={{ flex: 2 }}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -123,7 +131,6 @@ const FriendChat = ({ currentFriend, sender }) => {
             renderBubble={renderBubble}
           />
         </KeyboardAvoidingView>
-
       </View>
     </TouchableWithoutFeedback>
   );

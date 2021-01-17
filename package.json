@@ -127,6 +127,7 @@
     "regenerator-runtime": "^0.13.7",
     "request": "^2.88.2",
     "sequelize": "^6.3.5",
+    "socket.io": "^3.1.0",
     "stream-chat": "^2.10.0",
     "stream-chat-expo": "^2.1.1",
     "watchman": "^1.0.0"

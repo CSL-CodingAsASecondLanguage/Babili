@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
 const ProfileScreen = ({ navigation, isFocused }) => {
   const [userInfo, setUserInfo] = useState(null);
-  let user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
 
   const fetchUser = () => {
     axios.get(`${config.BASE_URL}/user/${user.email}`)
@@ -79,17 +79,6 @@ const ProfileScreen = ({ navigation, isFocused }) => {
   const onSubmit = async (data) => {
     await updateUser(data);
     alert('Profile Updated!');
-  };
-
-  const logOut = async () => {
-    try {
-      await firebase.auth().signOut();
-      // reassign user to string to avoid user === null
-      user = 'no current user';
-      await navigation.navigate('Login');
-    } catch (err) {
-      console.warn('err in logout', err);
-    }
   };
 
   useEffect(() => {
@@ -195,7 +184,7 @@ const ProfileScreen = ({ navigation, isFocused }) => {
       <ScrollView>
         <FriendRequests userInfo={userInfo} />
       </ScrollView>
-      <TouchableOpacity onPress={logOut}>
+      <TouchableOpacity>
         <Text style={{
           backgroundColor: 'white',
           width: 85,
