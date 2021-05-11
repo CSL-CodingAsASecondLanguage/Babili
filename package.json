@@ -75,7 +75,7 @@
     "fs": "0.0.1-security",
     "jpeg-js": "^0.4.2",
     "json-server": "^0.16.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.64.0",
     "multer": "^1.4.2",
     "native-base": "^2.15.0",
